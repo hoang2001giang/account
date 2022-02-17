@@ -26,4 +26,31 @@ class User {
         return $stmt;
     }
 
+    function create() {
+        $query = "INSERT INTO " . $this->table_name . 
+                " SET first_name = :first_name, last_name = :last_name, email = :email, password = :password";
+        
+        $stmt = $this->conn->prepare($query);
+
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':first_name', $this->first_name);
+        $stmt->bindParam(':last_name', $this->last_name);
+
+        $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+        $stmt->bindParam(':password', $password_hash);
+        
+        $res = false;
+
+        if ($stmt->execute()) {
+            $res = true;
+        }
+
+        return $res;
+    }
+
 }

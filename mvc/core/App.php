@@ -2,15 +2,11 @@
 class App{
 
     protected $controller = "Home";
-    protected $action = "readAll";
+    protected $action = "first";
     protected $params = [];
 
     function __construct(){
         $arr = $this->UrlProcess();
-
-        echo '<pre>';
-        print_r($arr);
-        echo '</pre>';
  
         // Controller
         if(isset($arr) && file_exists("./mvc/controllers/".$arr[0].".php") ){

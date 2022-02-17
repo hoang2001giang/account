@@ -1,6 +1,6 @@
 <?php
 class Home extends Controller {
-    function readAll() {
+    function first() {
         $user = $this->model("User");
         $stmt = $user->readAll();
         $num = $stmt->rowCount();
@@ -38,9 +38,11 @@ class Home extends Controller {
         
             // tell the user no citizens found
             echo json_encode(
-                array("message" => "No citizens found.")
+                array("message" => "No users found.")
             );
         }
+
+        // view
 
     }
 }
